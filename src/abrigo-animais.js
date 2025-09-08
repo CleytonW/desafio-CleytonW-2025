@@ -12,7 +12,9 @@ class AbrigoAnimais {
   }
 
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
-    return [];
+    const lista1 = brinquedosPessoa1.split(',');
+    const lista2 = brinquedosPessoa2.split(',');
+    const ordem = ordemAnimais.split(',');
   }
 }
 
