@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Rodar testes com Jest",
+			"type": "shell",
+			"command": "npx jest",
+			"problemMatcher": [
+				"$jest-stare"
+			],
+			"group": "test"
+		}
+	]
+}
