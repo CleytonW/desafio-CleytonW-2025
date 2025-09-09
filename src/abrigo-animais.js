@@ -53,7 +53,7 @@ class AbrigoAnimais {
 }
 
 const abrigo = new AbrigoAnimais();
-console.log(abrigo.contemBrinquedosNaOrdem(["BOLA", "RATO"], ["BOLA", "RATO"])); // Deve mostrar true
-console.log(abrigo.contemBrinquedosNaOrdem(["RATO", "BOLA"], ["BOLA", "RATO"])); // Deve mostrar false
+console.log(abrigo.contemBrinquedosNaOrdem(["BOLA", "RATO"], ["BOLA", "RATO"]));
+console.log(abrigo.contemBrinquedosNaOrdem(["RATO", "BOLA"], ["BOLA", "RATO"]));
 
 export { AbrigoAnimais as AbrigoAnimais };
