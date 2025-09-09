@@ -89,17 +89,28 @@ class AbrigoAnimais {
     for (const animal of this.animais) {
       if (!ordem.includes(animal.nome)) continue;
 
-      const pessoa1TemBrinquedos = this.contemBrinquedosNaOrdem(lista1, animal.brinquedos);
-      const pessoa2TemBrinquedos = this.contemBrinquedosNaOrdem(lista2, animal.brinquedos);
+      const pessoa1TemBrinquedos = this.contemBrinquedosNaOrdem(
+        lista1,
+        animal.brinquedos
+      );
+      const pessoa2TemBrinquedos = this.contemBrinquedosNaOrdem(
+        lista2,
+        animal.brinquedos
+      );
 
       if (pessoa1TemBrinquedos) pessoa1.push(animal.nome);
       if (pessoa2TemBrinquedos) pessoa2.push(animal.nome);
-    
     }
-    return {
-      pessoa1,
-      pessoa2,
-    };
+    if (pessoa1TemBrinquedos && pessoa2TemBrinquedos) {
+      resultado.push(`${animal} - abrigo`);
+    } else if (pessoa1TemBrinquedos) {
+      resultado.push(`${animal} - pessoa 1`);
+    } else if (pessoa2TemBrinquedos) {
+      resultado.push(`${animal} - pessoa 2`);
+    } else {
+      resultado.push(`${animal} - abrigo`);
+    }
+    return { lista: resultado };
   }
 }
 
