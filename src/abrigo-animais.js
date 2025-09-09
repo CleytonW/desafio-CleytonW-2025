@@ -91,6 +91,25 @@ class AbrigoAnimais {
     for (const animal of this.animais) {
       if (!ordem.includes(animal.nome)) continue;
 
+      if (animal.nome === "Loco") {
+        const jaAdotou = adocaoPessoa1 > 0 || adocaoPessoa2 > 0;
+        if (jaAdotou) {
+          if (lista1.includes(animal.brinquedos[0]) || lista1.includes(animal.brinquedos[1])) {
+            resultado.push(`${animal.nome} - pessoa 1`);
+            adocaoPessoa1++;
+          } else if (lista2.includes(animal.brinquedos[0]) || lista2.includes(animal.brinquedos[1])) {
+            resultado.push(`${animal.nome} - pessoa 2`);
+            adocaoPessoa2++;
+          } else {
+            resultado.push(`${animal.nome} - abrigo`);
+          }
+      } else {
+          resultado.push(`${animal.nome} - abrigo`);
+        }
+
+        continue;
+      }
+
       const pessoa1TemBrinquedos = this.contemBrinquedosNaOrdem(
         lista1,
         animal.brinquedos
