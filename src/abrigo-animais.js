@@ -11,6 +11,22 @@ class AbrigoAnimais {
     ];
   }
 
+  contemBrinquedosNaOrdem(listaBrinquedosPessoa, brinquedosFavoritos) {
+    let procurarBrinquedoFavorito = 0;
+    for (let i = 0; i < listaBrinquedosPessoa.length; i++) {
+      if (
+        listaBrinquedosPessoa[i] ===
+        brinquedosFavoritos[procurarBrinquedoFavorito]
+      ) {
+        procurarBrinquedoFavorito = procurarBrinquedoFavorito + 1;
+      }
+      if (procurarBrinquedoFavorito === brinquedosFavoritos.length) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
     const lista1 = brinquedosPessoa1.split(",");
     const lista2 = brinquedosPessoa2.split(",");
@@ -29,10 +45,15 @@ class AbrigoAnimais {
         }
       }
     }
-    return { 
-      pessoa1, pessoa2 
+    return {
+      pessoa1,
+      pessoa2,
     };
   }
 }
+
+const abrigo = new AbrigoAnimais();
+console.log(abrigo.contemBrinquedosNaOrdem(["BOLA", "RATO"], ["BOLA", "RATO"])); // Deve mostrar true
+console.log(abrigo.contemBrinquedosNaOrdem(["RATO", "BOLA"], ["BOLA", "RATO"])); // Deve mostrar false
 
 export { AbrigoAnimais as AbrigoAnimais };
