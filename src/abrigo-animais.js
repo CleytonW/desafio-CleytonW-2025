@@ -83,8 +83,10 @@ class AbrigoAnimais {
       return { erro: "Animal inválido" };
     }
 
-    const pessoa1 = [];
-    const pessoa2 = [];
+    let resultado = [];
+
+    let adocaoPessoa1 = 0;
+    let adocaoPessoa2 = 0;
 
     for (const animal of this.animais) {
       if (!ordem.includes(animal.nome)) continue;
@@ -98,17 +100,21 @@ class AbrigoAnimais {
         animal.brinquedos
       );
 
-      if (pessoa1TemBrinquedos) pessoa1.push(animal.nome);
-      if (pessoa2TemBrinquedos) pessoa2.push(animal.nome);
-    }
-    if (animal.tipo === "gato" && pessoa1TemBrinquedos && pessoa2TemBrinquedos) {
-      resultado.push(`${animal} - abrigo`);
-    } else if (pessoa1TemBrinquedos) {
-      resultado.push(`${animal} - pessoa 1`);
-    } else if (pessoa2TemBrinquedos) {
-      resultado.push(`${animal} - pessoa 2`);
-    } else {
-      resultado.push(`${animal} - abrigo`);
+      const disponibilidadePessoa1 = pessoa1TemBrinquedos && adocaoPessoa1 < 3;
+      const disponibilidadePessoa2 = pessoa2TemBrinquedos && adocaoPessoa2 < 3;
+      if (
+        animal.tipo === "gato" &&
+        pessoa1TemBrinquedos &&
+        pessoa2TemBrinquedos
+      ) {
+        resultado.push(`${animal.nome} - abrigo`);
+      } else if (pessoa1TemBrinquedos) {
+        resultado.push(`${animal.nome} - pessoa 1`);
+      } else if (pessoa2TemBrinquedos) {
+        resultado.push(`${animal.nome} - pessoa 2`);
+      } else {
+        resultado.push(`${animal.nome} - abrigo`);
+      }
     }
     return { lista: resultado };
   }
