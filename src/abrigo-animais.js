@@ -32,8 +32,56 @@ class AbrigoAnimais {
     const lista2 = brinquedosPessoa2.split(",");
     const ordem = ordemAnimais.split(",");
 
-    const listaBriquedos = ["BOLA", "RATO", "LASER", "CAIXA", "NOVELO", "SKATE"];
-    const nomesAnimais = ["Rex", "Mimi", "Fofo", "Zero", "Bola", "Bebe", "Loco"];
+    const listaBrinquedos = [
+      "BOLA",
+      "RATO",
+      "LASER",
+      "CAIXA",
+      "NOVELO",
+      "SKATE",
+    ];
+    const nomesAnimais = [
+      "Rex",
+      "Mimi",
+      "Fofo",
+      "Zero",
+      "Bola",
+      "Bebe",
+      "Loco",
+    ];
+
+    for (const brinquedo of lista1) {
+      if (!listaBrinquedos.includes(brinquedo)) {
+        return { erro: "Brinquedo inválido" };
+      }
+    }
+
+    for (const brinquedo of lista2) {
+      if (!listaBrinquedos.includes(brinquedo)) {
+        return { erro: "Brinquedo inválido" };
+      }
+    }
+
+    const brinquedosDuplicados1 = new Set(lista1);
+    if (brinquedosDuplicados1.size !== lista1.length) {
+      return { erro: "Brinquedo inválido" };
+    }
+
+    const brinquedosDuplicados2 = new Set(lista2);
+    if (brinquedosDuplicados2.size !== lista1.length) {
+      return { erro: "Brinquedo inválido" };
+    }
+
+    for (const animal of ordem) {
+      if (!nomesAnimais.includes(animal)) {
+        return { erro: "Animal inválido" };
+      }
+    }
+
+    const animaisUnicos = new Set(ordem);
+    if (animaisUnicos.size !== ordem.length) {
+      return { erro: "Animal inválido" };
+    }
 
     const pessoa1 = [];
     const pessoa2 = [];
