@@ -102,16 +102,14 @@ class AbrigoAnimais {
 
       const disponibilidadePessoa1 = pessoa1TemBrinquedos && adocaoPessoa1 < 3;
       const disponibilidadePessoa2 = pessoa2TemBrinquedos && adocaoPessoa2 < 3;
-      if (
-        animal.tipo === "gato" &&
-        pessoa1TemBrinquedos &&
-        pessoa2TemBrinquedos
-      ) {
+      if (pessoa1TemBrinquedos && pessoa2TemBrinquedos) {
         resultado.push(`${animal.nome} - abrigo`);
       } else if (pessoa1TemBrinquedos) {
         resultado.push(`${animal.nome} - pessoa 1`);
+        adocaoPessoa1++;
       } else if (pessoa2TemBrinquedos) {
         resultado.push(`${animal.nome} - pessoa 2`);
+        adocaoPessoa2++;
       } else {
         resultado.push(`${animal.nome} - abrigo`);
       }
