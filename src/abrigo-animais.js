@@ -101,7 +101,7 @@ class AbrigoAnimais {
       if (pessoa1TemBrinquedos) pessoa1.push(animal.nome);
       if (pessoa2TemBrinquedos) pessoa2.push(animal.nome);
     }
-    if (pessoa1TemBrinquedos && pessoa2TemBrinquedos) {
+    if (animal.tipo === "gato" && pessoa1TemBrinquedos && pessoa2TemBrinquedos) {
       resultado.push(`${animal} - abrigo`);
     } else if (pessoa1TemBrinquedos) {
       resultado.push(`${animal} - pessoa 1`);
