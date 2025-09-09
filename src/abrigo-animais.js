@@ -30,7 +30,7 @@ class AbrigoAnimais {
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
     const lista1 = brinquedosPessoa1.split(",");
     const lista2 = brinquedosPessoa2.split(",");
-    const ordem = ordemAnimais.split(",");
+    let ordem = ordemAnimais.split(",");
 
     const listaBrinquedos = [
       "BOLA",
@@ -88,22 +88,67 @@ class AbrigoAnimais {
     let adocaoPessoa1 = 0;
     let adocaoPessoa2 = 0;
 
+    let gatosTemConflito = false;
+
+    // compara cada gato com os outros
+    for (let i = 0; i < this.animais.length; i++) {
+      if (this.animais[i].tipo !== "gato") continue;
+
+      for (let j = i + 1; j < this.animais.length; j++) {
+        if (this.animais[j].tipo !== "gato") continue;
+
+        // compara os brinquedos de dois gatos
+        for (let b1 of this.animais[i].brinquedos) {
+          for (let b2 of this.animais[j].brinquedos) {
+            if (b1 === b2) {
+              gatosTemConflito = true;
+            }
+          }
+        }
+      }
+    }
+
+    // se houver conflito, manda todos os gatos da ordem pro abrigo
+    if (gatosTemConflito) {
+      for (let animal of this.animais) {
+        if (animal.tipo === "gato" && ordem.includes(animal.nome)) {
+          resultado.push(animal.nome + " - abrigo");
+        }
+      }
+
+      // remove gatos da ordem
+      ordem = ordem.filter((nome) => {
+        for (let animal of this.animais) {
+          if (animal.tipo === "gato" && animal.nome === nome) {
+            return false;
+          }
+        }
+        return true;
+      });
+    }
+
     for (const animal of this.animais) {
       if (!ordem.includes(animal.nome)) continue;
 
       if (animal.nome === "Loco") {
         const jaAdotou = adocaoPessoa1 > 0 || adocaoPessoa2 > 0;
         if (jaAdotou) {
-          if (lista1.includes(animal.brinquedos[0]) || lista1.includes(animal.brinquedos[1])) {
+          if (
+            lista1.includes(animal.brinquedos[0]) ||
+            lista1.includes(animal.brinquedos[1])
+          ) {
             resultado.push(`${animal.nome} - pessoa 1`);
             adocaoPessoa1++;
-          } else if (lista2.includes(animal.brinquedos[0]) || lista2.includes(animal.brinquedos[1])) {
+          } else if (
+            lista2.includes(animal.brinquedos[0]) ||
+            lista2.includes(animal.brinquedos[1])
+          ) {
             resultado.push(`${animal.nome} - pessoa 2`);
             adocaoPessoa2++;
           } else {
             resultado.push(`${animal.nome} - abrigo`);
           }
-      } else {
+        } else {
           resultado.push(`${animal.nome} - abrigo`);
         }
 
@@ -136,9 +181,5 @@ class AbrigoAnimais {
     return { lista: resultado };
   }
 }
-
-const abrigo = new AbrigoAnimais();
-console.log(abrigo.contemBrinquedosNaOrdem(["BOLA", "RATO"], ["BOLA", "RATO"]));
-console.log(abrigo.contemBrinquedosNaOrdem(["RATO", "BOLA"], ["BOLA", "RATO"]));
 
 export { AbrigoAnimais as AbrigoAnimais };
