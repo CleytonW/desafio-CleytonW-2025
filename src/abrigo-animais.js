@@ -68,7 +68,7 @@ class AbrigoAnimais {
     }
 
     const brinquedosDuplicados2 = new Set(lista2);
-    if (brinquedosDuplicados2.size !== lista1.length) {
+    if (brinquedosDuplicados2.size !== lista2.length) {
       return { erro: "Brinquedo inválido" };
     }
 
@@ -87,14 +87,14 @@ class AbrigoAnimais {
     const pessoa2 = [];
 
     for (const animal of this.animais) {
-      for (const brinquedo of animal.brinquedos) {
-        if (lista1.includes(brinquedo) && !pessoa1.includes(animal.nome)) {
-          pessoa1.push(animal.nome);
-        }
-        if (lista2.includes(brinquedo) && !pessoa2.includes(animal.nome)) {
-          pessoa2.push(animal.nome);
-        }
-      }
+      if (!ordem.includes(animal.nome)) continue;
+
+      const pessoa1TemBrinquedos = this.contemBrinquedosNaOrdem(lista1, animal.brinquedos);
+      const pessoa2TemBrinquedos = this.contemBrinquedosNaOrdem(lista2, animal.brinquedos);
+
+      if (pessoa1TemBrinquedos) pessoa1.push(animal.nome);
+      if (pessoa2TemBrinquedos) pessoa2.push(animal.nome);
+    
     }
     return {
       pessoa1,
