@@ -32,6 +32,9 @@ class AbrigoAnimais {
     const lista2 = brinquedosPessoa2.split(",");
     const ordem = ordemAnimais.split(",");
 
+    const listaBriquedos = ["BOLA", "RATO", "LASER", "CAIXA", "NOVELO", "SKATE"];
+    const nomesAnimais = ["Rex", "Mimi", "Fofo", "Zero", "Bola", "Bebe", "Loco"];
+
     const pessoa1 = [];
     const pessoa2 = [];
 
